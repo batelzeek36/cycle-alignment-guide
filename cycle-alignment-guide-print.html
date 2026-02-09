@@ -45,7 +45,7 @@
     font-weight: 700;
     letter-spacing: 2pt;
     text-transform: uppercase;
-    color: var(--burgundy);
+    color: var(--soft-purple);
     margin-bottom: 2pt;
   }
   .doc-header .subtitle {
@@ -178,8 +178,19 @@
   /* ---------- DIVIDER ---------- */
   .divider {
     border: none;
-    border-top: 0.5pt solid var(--border-light);
-    margin: 8pt 0;
+    margin: 6pt 0;
+    text-align: center;
+    font-size: 8pt;
+    color: var(--border-light);
+    overflow: visible;
+    height: auto;
+    line-height: 1;
+  }
+  .divider::after {
+    content: "\2727 \00a0 \2727 \00a0 \2727";
+    color: var(--gold);
+    font-size: 7pt;
+    letter-spacing: 2pt;
   }
 
   /* ---------- BOTTOM SECTIONS ---------- */
@@ -302,19 +313,19 @@
 
 <!-- ============ HEADER ============ -->
 <div class="doc-header">
-  <h1>Cycle Alignment Guide</h1>
+  <h1>&#10045; Cycle Alignment Guide &#10045;</h1>
   <div class="subtitle">Self-Care &middot; Creativity &middot; Leadership</div>
-  <div class="day1-note">Day 1 = first day of full bleeding</div>
+  <div class="day1-note">&#8212; Day 1 = first day of full bleeding &#8212;</div>
 </div>
 
 <!-- ============ MENSTRUAL ============ -->
 <div class="phase phase--menstrual">
   <div class="phase-header">
-    <span class="phase-icon">&#9679;</span>
+    <span class="phase-icon">&#10047;</span>
     <span class="phase-name">Menstrual Phase</span>
     <span class="phase-calendar">Day 1&ndash;5 (or while bleeding)</span>
   </div>
-  <div class="energy-theme">Reset &middot; Release &middot; Restore</div>
+  <div class="energy-theme">&#10043; Reset &middot; Release &middot; Restore &#10043;</div>
   <div class="cues"><strong>Body cues:</strong> Bleeding, low energy/fatigue, cramping or heaviness, more emotional or inward, desire for quiet and solitude</div>
   <div class="phase-body">
     <div class="col">
@@ -387,11 +398,11 @@
 <!-- ============ FOLLICULAR ============ -->
 <div class="phase phase--follicular">
   <div class="phase-header">
-    <span class="phase-icon">&#9672;</span>
+    <span class="phase-icon">&#10048;</span>
     <span class="phase-name">Follicular Phase</span>
     <span class="phase-calendar">Day 6&ndash;Ovulation (typically Day 6&ndash;13)</span>
   </div>
-  <div class="energy-theme">Build &middot; Initiate &middot; Expand</div>
+  <div class="energy-theme">&#10043; Build &middot; Initiate &middot; Expand &#10043;</div>
   <div class="cues"><strong>Body cues:</strong> Energy rising, clear thinking and focus, motivation to organize or start new things, mood improving, cervical fluid minimal or creamy</div>
   <div class="phase-body">
     <div class="col">
@@ -466,11 +477,11 @@
 <!-- ============ OVULATORY ============ -->
 <div class="phase phase--ovulatory">
   <div class="phase-header">
-    <span class="phase-icon">&#10022;</span>
+    <span class="phase-icon">&#10049;</span>
     <span class="phase-name">Ovulatory Phase</span>
     <span class="phase-calendar">Around mid-cycle (12&ndash;16 days before next period)</span>
   </div>
-  <div class="energy-theme">Express &middot; Connect &middot; Lead</div>
+  <div class="energy-theme">&#10043; Express &middot; Connect &middot; Lead &#10043;</div>
   <div class="cues"><strong>Body cues:</strong> Increased confidence and social energy, higher libido, clear stretchy cervical fluid, skin may appear brighter, desire to connect and be seen</div>
   <div class="phase-body">
     <div class="col">
@@ -544,11 +555,11 @@
 <!-- ============ LUTEAL ============ -->
 <div class="phase phase--luteal">
   <div class="phase-header">
-    <span class="phase-icon">&#9753;</span>
+    <span class="phase-icon">&#10046;</span>
     <span class="phase-name">Luteal Phase</span>
     <span class="phase-calendar">Ovulation to day before next period (last 12&ndash;14 days)</span>
   </div>
-  <div class="energy-theme">Refine &middot; Protect &middot; Prepare</div>
+  <div class="energy-theme">&#10043; Refine &middot; Protect &middot; Prepare &#10043;</div>
   <div class="cues"><strong>Body cues:</strong> Energy gradually declining, increased appetite or cravings, bloating or breast tenderness, greater emotional sensitivity, lower stress tolerance</div>
   <div class="phase-body">
     <div class="col">
@@ -649,10 +660,10 @@
         <tr><th>Phase</th><th>Primary Focus</th></tr>
       </thead>
       <tbody>
-        <tr><td class="phase-col">&#9679; Menstrual</td><td>Vision, strategy, rest</td></tr>
-        <tr><td class="phase-col">&#9672; Follicular</td><td>Build, plan, create</td></tr>
-        <tr><td class="phase-col">&#10022; Ovulatory</td><td>Film, launch, host, be visible</td></tr>
-        <tr><td class="phase-col">&#9753; Luteal</td><td>Edit, refine, complete</td></tr>
+        <tr><td class="phase-col">&#10047; Menstrual</td><td>Vision, strategy, rest</td></tr>
+        <tr><td class="phase-col">&#10048; Follicular</td><td>Build, plan, create</td></tr>
+        <tr><td class="phase-col">&#10049; Ovulatory</td><td>Film, launch, host, be visible</td></tr>
+        <tr><td class="phase-col">&#10046; Luteal</td><td>Edit, refine, complete</td></tr>
       </tbody>
     </table>
   </div>
@@ -667,7 +678,7 @@
     <li>Menstrual phase = clearest strategic insight</li>
     <li>Ovulation = strongest presence (but may overcommit)</li>
   </ul>
-  <div class="closing">The power isn't tracking your cycle. The power is scheduling your life around your nervous system.</div>
+  <div class="closing">&#10045; The power isn't tracking your cycle. The power is scheduling your life around your nervous system. &#10045;</div>
 </div>
 
 </body>
