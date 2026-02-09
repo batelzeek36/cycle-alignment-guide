@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cycle Alignment Guide</title>
+<style>
+  @page {
+    size: letter;
+    margin: 0.5in 0.55in;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    line-height: 1.35;
+    color: #1a1a1a;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---------- HEADER ---------- */
+  .doc-header {
+    text-align: center;
+    padding-bottom: 8pt;
+    border-bottom: 2pt solid #1a1a1a;
+    margin-bottom: 10pt;
+  }
+  .doc-header h1 {
+    font-size: 16pt;
+    font-weight: 700;
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    margin-bottom: 2pt;
+  }
+  .doc-header .subtitle {
+    font-size: 9pt;
+    font-weight: 400;
+    color: #555;
+  }
+  .doc-header .day1-note {
+    font-size: 8pt;
+    font-style: italic;
+    color: #777;
+    margin-top: 2pt;
+  }
+
+  /* ---------- PHASE BLOCK ---------- */
+  .phase {
+    margin-bottom: 10pt;
+    page-break-inside: avoid;
+  }
+  .phase-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8pt;
+    border-bottom: 1pt solid #999;
+    padding-bottom: 2pt;
+    margin-bottom: 5pt;
+  }
+  .phase-icon {
+    font-size: 11pt;
+    flex-shrink: 0;
+  }
+  .phase-name {
+    font-size: 11pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+  }
+  .phase-calendar {
+    font-size: 8pt;
+    color: #555;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .energy-theme {
+    font-size: 8pt;
+    font-weight: 600;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 4pt;
+  }
+
+  /* ---------- THREE-COLUMN LAYOUT ---------- */
+  .phase-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8pt;
+  }
+  .col { }
+  .col-header {
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3pt;
+    border-bottom: 0.5pt solid #bbb;
+    padding-bottom: 1pt;
+    margin-bottom: 3pt;
+    color: #333;
+  }
+  .sub-section {
+    margin-bottom: 4pt;
+  }
+  .sub-label {
+    font-size: 7.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 1pt;
+  }
+  .col ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .col li {
+    padding-left: 8pt;
+    text-indent: -8pt;
+    margin-bottom: 1pt;
+    font-size: 8.5pt;
+  }
+  .col li::before {
+    content: "\2022\00a0";
+    color: #888;
+  }
+
+  /* ---------- BODY CUES (inline) ---------- */
+  .cues {
+    font-size: 8pt;
+    color: #555;
+    margin-bottom: 4pt;
+    padding-left: 2pt;
+  }
+  .cues strong { color: #333; }
+
+  /* ---------- DIVIDER ---------- */
+  .divider {
+    border: none;
+    border-top: 1pt solid #ccc;
+    margin: 10pt 0;
+  }
+
+  /* ---------- BOTTOM SECTIONS ---------- */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12pt;
+    margin-top: 8pt;
+  }
+  .bottom-section h3 {
+    font-size: 9.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3pt;
+    border-bottom: 1pt solid #999;
+    padding-bottom: 2pt;
+    margin-bottom: 4pt;
+  }
+  .bottom-section ol {
+    padding-left: 14pt;
+    font-size: 8.5pt;
+  }
+  .bottom-section ol li {
+    margin-bottom: 1pt;
+  }
+
+  /* ---------- CHEAT SHEET TABLE ---------- */
+  .cheat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-top: 4pt;
+  }
+  .cheat-table th {
+    text-align: left;
+    font-weight: 700;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3pt;
+    padding: 3pt 6pt;
+    border-bottom: 1pt solid #999;
+    color: #333;
+  }
+  .cheat-table td {
+    padding: 3pt 6pt;
+    border-bottom: 0.5pt solid #ddd;
+    vertical-align: top;
+  }
+  .cheat-table .phase-col { font-weight: 600; white-space: nowrap; }
+
+  /* ---------- REALITY CHECK ---------- */
+  .reality-check {
+    margin-top: 10pt;
+    padding: 6pt 8pt;
+    border: 1pt solid #999;
+    background: #f7f7f7;
+  }
+  .reality-check h3 {
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 3pt;
+  }
+  .reality-check ul {
+    list-style: none;
+    padding: 0;
+    font-size: 8.5pt;
+    column-count: 2;
+    column-gap: 12pt;
+  }
+  .reality-check li {
+    padding-left: 8pt;
+    text-indent: -8pt;
+    margin-bottom: 1pt;
+  }
+  .reality-check li::before {
+    content: "\25B8\00a0";
+    color: #888;
+  }
+  .reality-check .closing {
+    margin-top: 5pt;
+    font-size: 8.5pt;
+    font-style: italic;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print {
+    body { font-size: 9pt; }
+    .reality-check { background: #f7f7f7 !important; }
+  }
+
+  /* ---------- SCREEN PREVIEW ---------- */
+  @media screen {
+    body {
+      max-width: 7.5in;
+      margin: 0.5in auto;
+      padding: 0.5in;
+      border: 1px solid #ddd;
+      background: #fff;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<div class="doc-header">
+  <h1>Cycle Alignment Guide</h1>
+  <div class="subtitle">Self-Care &middot; Creativity &middot; Leadership</div>
+  <div class="day1-note">Day 1 = first day of full bleeding</div>
+</div>
+
+<!-- ============ MENSTRUAL ============ -->
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-icon">&#9679;</span>
+    <span class="phase-name">Menstrual Phase</span>
+    <span class="phase-calendar">Day 1&ndash;5 (or while bleeding)</span>
+  </div>
+  <div class="energy-theme">Reset &middot; Release &middot; Restore</div>
+  <div class="cues"><strong>Body cues:</strong> Bleeding, low energy/fatigue, cramping or heaviness, more emotional or inward, desire for quiet and solitude</div>
+  <div class="phase-body">
+    <div class="col">
+      <div class="col-header">Self-Care</div>
+      <div class="sub-section">
+        <div class="sub-label">Lifestyle</div>
+        <ul>
+          <li>Slow your schedule</li>
+          <li>Prioritize rest &amp; gentle mornings</li>
+          <li>Light movement: walking, stretching, yin yoga</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Nutrition</div>
+        <ul>
+          <li>Iron-rich foods (beef, lamb, bone broth)</li>
+          <li>Warm meals and drinks</li>
+          <li>Hydration + electrolytes</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Support</div>
+        <ul>
+          <li>Heat (bath or heating pad)</li>
+          <li>Early bedtime</li>
+          <li>Journaling or reflection</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-header">Creative &amp; Work</div>
+      <div class="sub-section">
+        <div class="sub-label">Best For</div>
+        <ul>
+          <li>Visioning and big-picture ideas</li>
+          <li>Brand direction &amp; creative concepts</li>
+          <li>Reviewing what's working / not</li>
+          <li>Strategy and financial reflection</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Filming</div>
+        <ul>
+          <li>Avoid if possible</li>
+          <li>Script ideas, voice notes, content planning</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-header">Social &amp; Leadership</div>
+      <div class="sub-section">
+        <div class="sub-label">Social Energy</div>
+        <ul>
+          <li>Low &mdash; keep interactions minimal or 1:1</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Retreat Leadership</div>
+        <ul>
+          <li>Not ideal for hosting</li>
+          <li>Excellent for retreat design &amp; improvement planning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============ FOLLICULAR ============ -->
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-icon">&#9672;</span>
+    <span class="phase-name">Follicular Phase</span>
+    <span class="phase-calendar">Day 6&ndash;Ovulation (typically Day 6&ndash;13)</span>
+  </div>
+  <div class="energy-theme">Build &middot; Initiate &middot; Expand</div>
+  <div class="cues"><strong>Body cues:</strong> Energy rising, clear thinking and focus, motivation to organize or start new things, mood improving, cervical fluid minimal or creamy</div>
+  <div class="phase-body">
+    <div class="col">
+      <div class="col-header">Self-Care</div>
+      <div class="sub-section">
+        <div class="sub-label">Lifestyle</div>
+        <ul>
+          <li>Plan, organize, and start projects</li>
+          <li>Schedule meetings or collaborations</li>
+          <li>Try new routines or ideas</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Movement</div>
+        <ul>
+          <li>Strength training</li>
+          <li>Moderate cardio</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Nutrition</div>
+        <ul>
+          <li>Balanced meals with protein</li>
+          <li>Fresh, lighter foods</li>
+          <li>Stable blood sugar for sustained energy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-header">Creative &amp; Work</div>
+      <div class="sub-section">
+        <div class="sub-label">Best For</div>
+        <ul>
+          <li>Starting creative projects</li>
+          <li>Writing content</li>
+          <li>Brainstorming campaigns</li>
+          <li>Building systems or offers</li>
+          <li>Learning new tools or skills</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Filming</div>
+        <ul>
+          <li>Educational content</li>
+          <li>Tutorials</li>
+          <li>Informational or value-based videos</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-header">Social &amp; Leadership</div>
+      <div class="sub-section">
+        <div class="sub-label">Social Energy</div>
+        <ul>
+          <li>Moderate &mdash; great for meetings &amp; collaboration</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Retreat Leadership</div>
+        <ul>
+          <li>Planning retreats</li>
+          <li>Vendor coordination</li>
+          <li>Structuring schedules &amp; experiences</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============ OVULATORY ============ -->
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-icon">&#10022;</span>
+    <span class="phase-name">Ovulatory Phase</span>
+    <span class="phase-calendar">Around mid-cycle (12&ndash;16 days before next period)</span>
+  </div>
+  <div class="energy-theme">Express &middot; Connect &middot; Lead</div>
+  <div class="cues"><strong>Body cues:</strong> Increased confidence and social energy, higher libido, clear stretchy cervical fluid, skin may appear brighter, desire to connect and be seen</div>
+  <div class="phase-body">
+    <div class="col">
+      <div class="col-header">Self-Care</div>
+      <div class="sub-section">
+        <div class="sub-label">Lifestyle</div>
+        <ul>
+          <li>Be visible and active</li>
+          <li>Schedule important conversations</li>
+          <li>Engage socially</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Movement</div>
+        <ul>
+          <li>Higher-intensity workouts</li>
+          <li>Performance-based activity</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Nutrition</div>
+        <ul>
+          <li>Balanced meals with protein &amp; healthy fats</li>
+          <li>Stay well hydrated</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-header">Creative &amp; Work</div>
+      <div class="sub-section">
+        <div class="sub-label">Best For</div>
+        <ul>
+          <li>Personal brand expression</li>
+          <li>High-visibility creative work</li>
+          <li>Launches or promotions</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Filming</div>
+        <ul>
+          <li>Primary filming days</li>
+          <li>Photoshoots</li>
+          <li>Promotional content</li>
+          <li>Interviews, podcasts, speaking</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-header">Social &amp; Leadership</div>
+      <div class="sub-section">
+        <div class="sub-label">Social Energy</div>
+        <ul>
+          <li>Highest of the cycle &mdash; networking &amp; events</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Retreat Leadership</div>
+        <ul>
+          <li>Best phase for hosting retreats</li>
+          <li>Group facilitation</li>
+          <li>Guest connection</li>
+          <li>Ceremonies, experiences, sales conversations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============ LUTEAL ============ -->
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-icon">&#9753;</span>
+    <span class="phase-name">Luteal Phase</span>
+    <span class="phase-calendar">Ovulation to day before next period (last 12&ndash;14 days)</span>
+  </div>
+  <div class="energy-theme">Refine &middot; Protect &middot; Prepare</div>
+  <div class="cues"><strong>Body cues:</strong> Energy gradually declining, increased appetite or cravings, bloating or breast tenderness, greater emotional sensitivity, lower stress tolerance</div>
+  <div class="phase-body">
+    <div class="col">
+      <div class="col-header">Self-Care</div>
+      <div class="sub-section">
+        <div class="sub-label">Lifestyle</div>
+        <ul>
+          <li>Finish &amp; refine vs. starting new</li>
+          <li>Simplify your schedule</li>
+          <li>Create calm, organized environments</li>
+          <li>Strengthen boundaries</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Movement</div>
+        <ul>
+          <li>Moderate workouts early luteal</li>
+          <li>Walking, Pilates, yoga later</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Nutrition &amp; Support</div>
+        <ul>
+          <li>Higher protein and healthy fats</li>
+          <li>Magnesium-rich foods (dark chocolate, nuts)</li>
+          <li>Regular meals for stable mood</li>
+          <li>Earlier bedtime; reduce caffeine/alcohol</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-header">Creative &amp; Work</div>
+      <div class="sub-section">
+        <div class="sub-label">Best For</div>
+        <ul>
+          <li>Editing content</li>
+          <li>Refining brand visuals</li>
+          <li>Completing projects</li>
+          <li>Administrative work &amp; follow-ups</li>
+          <li>Quality control</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Filming</div>
+        <ul>
+          <li>Light filming early luteal if needed</li>
+          <li>Avoid heavy camera days late luteal</li>
+          <li>Ideal for editing &amp; post-production</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-header">Social &amp; Leadership</div>
+      <div class="sub-section">
+        <div class="sub-label">Social Energy</div>
+        <ul>
+          <li>Moderate early luteal</li>
+          <li>Lower later &mdash; prefer smaller groups</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Retreat Leadership</div>
+        <ul>
+          <li>Good for smaller, intimate retreats (early)</li>
+          <li>Avoid high-demand hosting late luteal</li>
+          <li>Best for behind-the-scenes operations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============ BOTTOM SECTIONS ============ -->
+<div class="bottom-grid">
+  <div class="bottom-section">
+    <h3>How to Mark Your Calendar</h3>
+    <ol>
+      <li><strong>Day 1</strong> = first day of full bleeding</li>
+      <li><strong>Menstrual:</strong> Day 1 through last bleed day</li>
+      <li><strong>Luteal:</strong> Count back 12&ndash;14 days from next period</li>
+      <li><strong>Ovulation:</strong> The day before luteal begins</li>
+      <li><strong>Follicular:</strong> All days between bleeding and ovulation</li>
+    </ol>
+    <div style="margin-top:4pt; font-size:8pt; color:#666;">
+      <strong>Example (28-day cycle):</strong>
+      Day 1&ndash;5 Menstrual &bull;
+      Day 6&ndash;13 Follicular &bull;
+      Day 14 Ovulation &bull;
+      Day 15&ndash;28 Luteal
+    </div>
+  </div>
+  <div class="bottom-section">
+    <h3>Monthly Planning Cheat Sheet</h3>
+    <table class="cheat-table">
+      <thead>
+        <tr><th>Phase</th><th>Primary Focus</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="phase-col">&#9679; Menstrual</td><td>Vision, strategy, rest</td></tr>
+        <tr><td class="phase-col">&#9672; Follicular</td><td>Build, plan, create</td></tr>
+        <tr><td class="phase-col">&#10022; Ovulatory</td><td>Film, launch, host, be visible</td></tr>
+        <tr><td class="phase-col">&#9753; Luteal</td><td>Edit, refine, complete</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ REALITY CHECK ============ -->
+<div class="reality-check">
+  <h3>Strategic Reality Check</h3>
+  <ul>
+    <li>Filming late luteal often feels "off"</li>
+    <li>Hosting retreats late luteal risks burnout</li>
+    <li>Menstrual phase = clearest strategic insight</li>
+    <li>Ovulation = strongest presence (but may overcommit)</li>
+  </ul>
+  <div class="closing">The power isn't tracking your cycle. The power is scheduling your life around your nervous system.</div>
+</div>
+
+</body>
+</html>
